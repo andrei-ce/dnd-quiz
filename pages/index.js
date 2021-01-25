@@ -38,11 +38,12 @@ export default function Home() {
         </Card>
         <Card>
           <Card.Content>
-            <h1>Quizes da Galera</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem soluta,
-              et atque dolorem facere vitae!
-            </p>
+            <h1>Orsik (Dwarf Cleric - lvl 2)</h1>
+            <h1>Illidan (High Elf Mage - lvl 2)</h1>
+            <h1>Bertha (Hobbit Rogue - lvl 2)</h1>
+            <h1>Aragorn (Human Warrior - lvl 2)</h1>
+            <h1>Amafrei (Human Warrior - lvl 2)</h1>
+            <p>Tarick bundao</p>
           </Card.Content>
         </Card>
       </QuizContainer>
