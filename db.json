@@ -1,0 +1,18 @@
+{
+  "bg": "http://getwallpapers.com/wallpaper/full/5/1/4/157682.jpg",
+  "title": "Dungeons & Dragons 101",
+  "description": "Voce esta pronto para jogar sua primeira aventura?",
+  "questions": [{}, {}],
+  "external": [""],
+  "theme": {
+    "colors": {
+      "primary": "#0225b2",
+      "secondary": "#00bad3",
+      "mainBg": "#171B35",
+      "contrastText": "#FFFFFF",
+      "wrong": "#B00020",
+      "success": "#4caf50"
+    },
+    "borderRadius": "4px"
+  }
+}
