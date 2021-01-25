@@ -6,10 +6,6 @@ import Footer from '../src/components/Footer/index';
 import GitHubCorner from '../src/components/GitHubCorner/index';
 import QuizBackground from '../src/components/QuizBackground/index';
 
-// import Widget from '../src/components/Widget';
-// import Widget from '../src/components/Widget';
-// import Widget from '../src/components/Widget';
-
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
