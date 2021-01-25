@@ -38,11 +38,11 @@ export default function Home() {
         </Card>
         <Card>
           <Card.Content>
-            <h1>Orsik (Dwarf Cleric - lvl 2)</h1>
-            <h1>Illidan (High Elf Mage - lvl 2)</h1>
-            <h1>Bertha (Hobbit Rogue - lvl 2)</h1>
-            <h1>Aragorn (Human Warrior - lvl 2)</h1>
-            <h1>Amafrei (Human Warrior - lvl 2)</h1>
+            <p>Orsik (Dwarf Cleric - lvl 2)</p>
+            <p>Illidan (High Elf Mage - lvl 2)</p>
+            <p>Bertha (Hobbit Rogue - lvl 2)</p>
+            <p>Aragorn (Human Warrior - lvl 2)</p>
+            <p>Amafrei (Human Warrior - lvl 2)</p>
             <p>Tarick bundao</p>
           </Card.Content>
         </Card>
