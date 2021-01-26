@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import db from '../db.json';
-import Card from '../src/components/Card/index';
-import Footer from '../src/components/Footer/index';
-import GitHubCorner from '../src/components/GitHubCorner/index';
-import QuizBackground from '../src/components/QuizBackground/index';
+import Card from '../src/components/Card';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
+import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
+import CustomLink from '../src/components/Link';
 
-export const QuizContainer = styled.div`
+const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
   padding-top: 45px;
@@ -55,16 +55,14 @@ const Home = () => {
           </Card>
           <Card>
             <Card.Content>
+              <h1>Lost Mine of Phandelver:</h1>
               <p>Orsik (Dwarf Cleric - lvl 2)</p>
               <p>Illidan (High Elf Mage - lvl 2)</p>
               <p>Bertha (Hobbit Rogue - lvl 2)</p>
               <p>Aragorn (Human Warrior - lvl 2)</p>
               <p>Amafrei (Human Warrior - lvl 2)</p>
-              <p>Tarick bundao</p>
             </Card.Content>
-            <Link href='/quiz'>
-              <a style={{ textDecoration: 'none', color: 'red' }}>Começe agora!</a>
-            </Link>
+            <CustomLink href='/quiz' type='normal' text='Começe agora!' />
           </Card>
         </QuizContainer>
         <Footer />

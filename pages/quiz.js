@@ -62,9 +62,6 @@ const Quiz = () => {
               <p>Amafrei (Human Warrior - lvl 2)</p>
               <p>Tarick bundao</p>
             </Card.Content>
-            <Link href='/'>
-              <a style={{ textDecoration: 0, color: 'red' }}>Voltar</a>
-            </Link>
           </Card>
         </QuizContainer>
         <Footer />

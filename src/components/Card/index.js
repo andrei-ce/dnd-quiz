@@ -6,12 +6,15 @@ const Card = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.mainBg};
   border-radius: 7px;
-  box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 12px 8px 13px 1px rgba(255, 255, 255, 0.05);
+  -webkit-box-shadow: 12px 8px 13px 1px rgba(255, 255, 255, 0.05);
+  -moz-box-shadow: 12px 8px 13px 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
+  transition: 0.4s;
   &:hover {
-    box-shadow: 12px 8px 13px 1px rgba(255, 255, 255, 0.05);
+    box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 12px 8px 13px 1px rgba(0, 0, 0, 0.75);
   }
   h1,
   h2,
@@ -34,7 +37,6 @@ Card.Header = styled.header`
   align-items: center;
   padding: 18px 32px;
   background-color: ${({ theme }) => theme.colors.primary};
-
   * {
     margin: 0;
   }
