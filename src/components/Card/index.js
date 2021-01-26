@@ -19,14 +19,12 @@ const Card = styled.div`
   h1,
   h2,
   h3 {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 300;
     line-height: 1;
-    margin-bottom: 0;
   }
   p {
     font-size: 14px;
-    font-weight: 400;
     line-height: 1;
   }
 `;

@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import db from '../db.json';
 import Card from '../src/components/Card/index';
@@ -20,55 +20,51 @@ export const QuizContainer = styled.div`
   }
 `;
 
-//each page should have a different one
-const MetaTags = () => {
-  return (
-    <Head>
-      <title>D&D Quiz</title>
-      <meta property='og:title' content='D&D Quiz: começe agora!' key='title' />
-      <meta property='og:image' content={db.bg} />
-      <meta property='og:image:type' content='image/jpg' />
-      <meta property='og:type' content='website' />
-      <meta
-        property='og:description'
-        content='Comece agora e descubra se você está pronto para jogar sua primeira campanha'
-      />
-      <meta property='og:locale' content='pt_BR' />
-    </Head>
-  );
-};
+// each page should have a different one
+const MetaTags = () => (
+  <Head>
+    <title>D&D Quiz</title>
+    <meta property='og:title' content='D&D Quiz: começe agora!' key='title' />
+    <meta property='og:image' content={db.bg} />
+    <meta property='og:image:type' content='image/jpg' />
+    <meta property='og:type' content='website' />
+    <meta
+      property='og:description'
+      content='Comece agora e descubra se você está pronto para jogar sua primeira campanha'
+    />
+    <meta property='og:locale' content='pt_BR' />
+  </Head>
+);
 
-const Quiz = () => {
-  return (
-    <>
-      <MetaTags />
-      <QuizBackground backgroundImage={db.bg}>
-        <QuizContainer>
-          <QuizLogo />
-          <Card>
-            <Card.Header>
-              <h1>Dungeons & Dragons</h1>
-            </Card.Header>
-            <Card.Content>
-              <p>Esta é a página do quiz.</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p>Orsik (Dwarf Cleric - lvl 2)</p>
-              <p>Illidan (High Elf Mage - lvl 2)</p>
-              <p>Bertha (Hobbit Rogue - lvl 2)</p>
-              <p>Aragorn (Human Warrior - lvl 2)</p>
-              <p>Amafrei (Human Warrior - lvl 2)</p>
-              <p>Tarick bundao</p>
-            </Card.Content>
-          </Card>
-        </QuizContainer>
-        <Footer />
-        <GitHubCorner projectUrl='https://github.com/andrei-ce/' />
-      </QuizBackground>
-    </>
-  );
-};
+const Quiz = () => (
+  <>
+    <MetaTags />
+    <QuizBackground backgroundImage={db.bg}>
+      <QuizContainer>
+        <QuizLogo />
+        <Card>
+          <Card.Header>
+            <h1>Dungeons & Dragons</h1>
+          </Card.Header>
+          <Card.Content>
+            <p>Esta é a página do quiz.</p>
+          </Card.Content>
+        </Card>
+        <Card>
+          <Card.Content>
+            <p>Orsik (Dwarf Cleric - lvl 2)</p>
+            <p>Illidan (High Elf Mage - lvl 2)</p>
+            <p>Bertha (Hobbit Rogue - lvl 2)</p>
+            <p>Aragorn (Human Warrior - lvl 2)</p>
+            <p>Amafrei (Human Warrior - lvl 2)</p>
+            <p>Tarick bundao</p>
+          </Card.Content>
+        </Card>
+      </QuizContainer>
+      <Footer />
+      <GitHubCorner projectUrl='https://github.com/andrei-ce/' />
+    </QuizBackground>
+  </>
+);
 
 export default Quiz;

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
@@ -5,7 +6,9 @@ const FooterWrapper = styled.footer`
   padding: 5px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 4px;
+  font-size: 12px;
   img {
     width: 58px;
     margin-right: 23px;
@@ -19,24 +22,27 @@ const FooterWrapper = styled.footer`
       opacity: 0.5;
     }
   }
+  span {
+    text-decoration: underline;
+  }
 `;
 
-export default function Footer(props) {
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <FooterWrapper {...props}>
+const Footer = (props) => (
+  <FooterWrapper {...props}>
+    <a href='https://www.alura.com.br/'>
+      <img
+        src='https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg'
+        alt='Logo Alura'
+      />
+    </a>
+    <p>
+      Criado durante:
+      {' '}
       <a href='https://www.alura.com.br/'>
-        <img
-          src='https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg'
-          alt='Logo Alura'
-        />
+        <span>Imersão React da Alura</span>
       </a>
-      <p>
-        Criado durante:{' '}
-        <a href='https://www.alura.com.br/'>
-          <span>Imersão React da Alura</span>
-        </a>
-      </p>
-    </FooterWrapper>
-  );
-}
+    </p>
+  </FooterWrapper>
+);
+
+export default Footer;
