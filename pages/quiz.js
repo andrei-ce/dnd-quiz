@@ -25,17 +25,20 @@ const MetaTags = () => {
   return (
     <Head>
       <title>D&D Quiz</title>
-      <meta property='og:title' content={db.title} key='title' />
+      <meta property='og:title' content='D&D Quiz: começe agora!' key='title' />
       <meta property='og:image' content={db.bg} />
       <meta property='og:image:type' content='image/jpg' />
       <meta property='og:type' content='website' />
-      <meta property='og:description' content={db.description} />
+      <meta
+        property='og:description'
+        content='Comece agora e descubra se você está pronto para jogar sua primeira campanha'
+      />
       <meta property='og:locale' content='pt_BR' />
     </Head>
   );
 };
 
-const Home = () => {
+const Quiz = () => {
   return (
     <>
       <MetaTags />
@@ -47,10 +50,7 @@ const Home = () => {
               <h1>Dungeons & Dragons</h1>
             </Card.Header>
             <Card.Content>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem soluta,
-                quasi, optio accusantium qui sit sunt et atque dolorem facere vitae!
-              </p>
+              <p>Esta é a página do quiz.</p>
             </Card.Content>
           </Card>
           <Card>
@@ -62,8 +62,8 @@ const Home = () => {
               <p>Amafrei (Human Warrior - lvl 2)</p>
               <p>Tarick bundao</p>
             </Card.Content>
-            <Link href='/quiz'>
-              <a style={{ textDecoration: 'none', color: 'red' }}>Começe agora!</a>
+            <Link href='/'>
+              <a style={{ textDecoration: 0, color: 'red' }}>Voltar</a>
             </Link>
           </Card>
         </QuizContainer>
@@ -74,4 +74,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Quiz;

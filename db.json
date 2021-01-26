@@ -1,7 +1,7 @@
 {
   "bg": "https://wallpapercave.com/wp/HHOI06N.jpg",
-  "title": "Dungeons & Dragons 101",
-  "description": "Voce esta pronto para jogar sua primeira aventura?",
+  "title": "D&D Quiz",
+  "description": "Um quiz desenhado para saber se você está pronto para jogar sua primeira campanha.",
   "questions": [{}, {}],
   "external": [""],
   "theme": {
