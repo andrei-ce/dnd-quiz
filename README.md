@@ -7,9 +7,9 @@ and React Styled components to create a SPA. In the future, all quizzes with the
 [aluraquiz](https://github.com/topics/aluraquiz) will be merged into one large pool of
 quizzes.
 
-## How to use
+## Deployed @
 
-deployed @
+Vercel:
 [https://dnd-quiz.andrei-ce.vercel.app/](https://dnd-quiz.andrei-ce.vercel.app/)
 
 ## How to use

@@ -2,7 +2,32 @@
   "bg": "https://wallpapercave.com/wp/HHOI06N.jpg",
   "title": "D&D Quiz",
   "description": "Um quiz desenhado para saber se você está pronto para jogar sua primeira campanha.",
-  "questions": [{}, {}],
+  "questions": [
+    {
+      "image": "https://media.giphy.com/media/3o7bu6heWydRCv0DPq/giphy.gif",
+      "title": "Como recuperar a vida de seu personagem?",
+      "description": "Essa é pra aquecer",
+      "answer": 3,
+      "alternatives": [
+        "Em um descanso longo (8h), jogando o dado correspondente",
+        "Usando uma poção de vida",
+        "Recebendo uma magia amiga",
+        "Todas as anteriores"
+      ]
+    },
+    {
+      "image": "https://media.giphy.com/media/l396VqYZOWsFSoSDS/giphy.gif",
+      "title": "Qual a vantagem de surpreender um enemigo?",
+      "description": "Discreção pode ser útil!",
+      "answer": 1,
+      "alternatives": [
+        "Ele leva um dano crítico",
+        "Você tem direito à um ataque antes de começar os turnos",
+        "Você ganha inspiração",
+        "Tem a chance de matar em 1 golpe"
+      ]
+    }
+  ],
   "external": [""],
   "theme": {
     "colors": {

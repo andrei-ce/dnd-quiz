@@ -1,70 +1,171 @@
-import React from 'react';
-import styled from 'styled-components';
-import Head from 'next/head';
+import React, { useState, useEffect } from 'react';
 
 import db from '../db.json';
-import Card from '../src/components/Card/index';
-import Footer from '../src/components/Footer/index';
-import GitHubCorner from '../src/components/GitHubCorner/index';
-import QuizBackground from '../src/components/QuizBackground/index';
+import Card from '../src/components/Card';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
+import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
+import QuizContainer from '../src/components/QuizContainer';
+import CustomBtn from '../src/components/CustomBtn';
+import ContentLoader from 'react-content-loader';
 
-export const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 8%;
-  @media only screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
-`;
+// <<<< Local Components (START) >>>>:
+const LoadingQuestion = () => {
+  return (
+    <Card>
+      <Card.Header>Carregando...</Card.Header>
+      <ContentLoader
+        speed={2}
+        width={400}
+        height={360}
+        viewBox='0 0 400 360'
+        backgroundColor='rgba(40,40,40,0.8)'
+        foregroundColor='rgba(60,60,60, 0.8)'>
+        <rect x='24' y='71' rx='2' ry='2' width='306' height='13' />
+        <rect x='24' y='28' rx='0' ry='0' width='308' height='39' />
+        <rect x='23' y='92' rx='0' ry='0' width='167' height='13' />
+        <rect x='41' y='120' rx='0' ry='0' width='269' height='44' />
+        <rect x='42' y='171' rx='0' ry='0' width='268' height='42' />
+        <rect x='43' y='286' rx='0' ry='0' width='267' height='44' />
+        <rect x='43' y='221' rx='0' ry='0' width='268' height='42' />
+      </ContentLoader>
+    </Card>
+  );
+};
 
-// each page should have a different one
-const MetaTags = () => (
-  <Head>
-    <title>D&D Quiz</title>
-    <meta property='og:title' content='D&D Quiz: começe agora!' key='title' />
-    <meta property='og:image' content={db.bg} />
-    <meta property='og:image:type' content='image/jpg' />
-    <meta property='og:type' content='website' />
-    <meta
-      property='og:description'
-      content='Comece agora e descubra se você está pronto para jogar sua primeira campanha'
-    />
-    <meta property='og:locale' content='pt_BR' />
-  </Head>
-);
+const Results = () => {
+  return (
+    <Card>
+      <Card.Header>🎉 Parabéns 🎉</Card.Header>
+      <Card.Content>
+        <p>
+          Não sei quantas voce acertou, mas independente disso, para jogar D&D so
+          precisa de vontade, amigos e imaginção!{' '}
+        </p>
+        <p>Veja alguns videos, compre um starter pack, e chame a galera!</p>
+      </Card.Content>
+    </Card>
+  );
+};
 
-const Quiz = () => (
-  <>
-    <MetaTags />
+// Local Component
+const QuestionCard = ({ question, totalQuestions, questionIndex, onSubmit }) => {
+  const questionId = `question__${questionIndex}`;
+
+  const handleSubmitQuiz = (e) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
+  return (
+    <Card>
+      <Card.Header>
+        {/* <BackLinkArrow href="/"/> */}
+        <h3>
+          Pergunta {questionIndex + 1} de {totalQuestions}
+        </h3>
+      </Card.Header>
+      <img
+        alt='descrição'
+        style={{
+          width: '100%',
+          height: '150px',
+          objectFit: 'cover',
+        }}
+        src={question.image}
+      />
+      <Card.Content>
+        <h2>{question.title}</h2>
+        <p>{question.description}</p>
+        <form autoComplete='off' onSubmit={(e) => handleSubmitQuiz(e)}>
+          {/* <pre>{JSON.stringify(question.alternatives, null, 4)}</pre> */}
+          {question.alternatives.map((alternative, i) => {
+            const alternativeId = `alternative__${i}`;
+            return (
+              <Card.Topic key={i} as='label' htmlFor={alternativeId}>
+                <input
+                  // style={{ display: 'none' }}
+                  id={alternativeId}
+                  name={questionId}
+                  type='radio'
+                />
+                {' ' + alternative}
+              </Card.Topic>
+            );
+          })}
+          <div style={{ display: 'flex' }}>
+            <CustomBtn type='submit' color='normal' disabled={false}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <i
+                  className='fa fa-check'
+                  aria-hidden='true'
+                  style={{ fontSize: 20, paddingRight: 10 }}
+                />
+                <span>Confirmar</span>
+              </div>
+            </CustomBtn>
+          </div>
+        </form>
+      </Card.Content>
+    </Card>
+  );
+};
+// <<<< Local Components (END) >>>>:
+
+// <<<< Main Component STATES >>>>:
+const screenStates = {
+  QUIZ: 'QUIZ',
+  LOADING: 'LOADING',
+  RESULT: 'RESULT',
+};
+
+// <<<< Main Component >>>>:
+const Quiz = () => {
+  const [screenState, setScreenState] = useState(screenStates.LOADING);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const question = db.questions[questionIndex];
+  const totalQuestions = db.questions.length;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ);
+    }, 2000);
+  }, []);
+
+  const handleSubmit = (e) => {
+    const nextQuestion = questionIndex + 1;
+    if (nextQuestion >= totalQuestions) {
+      setScreenState(screenStates.RESULT);
+    } else {
+      setQuestionIndex(nextQuestion);
+    }
+  };
+
+  return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Card>
-          <Card.Header>
-            <h1>Dungeons & Dragons</h1>
-          </Card.Header>
-          <Card.Content>
-            <p>Esta é a página do quiz.</p>
-          </Card.Content>
-        </Card>
-        <Card>
-          <Card.Content>
-            <p>Orsik (Dwarf Cleric - lvl 2)</p>
-            <p>Illidan (High Elf Mage - lvl 2)</p>
-            <p>Bertha (Hobbit Rogue - lvl 2)</p>
-            <p>Aragorn (Human Warrior - lvl 2)</p>
-            <p>Amafrei (Human Warrior - lvl 2)</p>
-            <p>Tarick bundao</p>
-          </Card.Content>
-        </Card>
+        {screenState === screenStates.LOADING && <LoadingQuestion />}
+        {screenState === screenStates.QUIZ && (
+          <QuestionCard
+            question={question}
+            totalQuestions={totalQuestions}
+            questionIndex={questionIndex}
+            onSubmit={handleSubmit}
+          />
+        )}
+        {screenState === screenStates.RESULT && <Results />}
       </QuizContainer>
       <Footer />
       <GitHubCorner projectUrl='https://github.com/andrei-ce/' />
     </QuizBackground>
-  </>
-);
+  );
+};
 
 export default Quiz;
