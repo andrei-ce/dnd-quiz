@@ -14,7 +14,7 @@ Vercel:
 
 ## How to use
 
-Download / Clone repository and type
+Clone repository and type
 
 ```bash
 npm install
