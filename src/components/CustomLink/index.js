@@ -57,13 +57,15 @@ const CustomLink = (props) => (
 );
 
 CustomLink.propTypes = {
-  text: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  href: PropTypes.string,
   type: PropTypes.oneOf(['success', 'wrong', 'normal']),
 };
 
 CustomLink.defaultProps = {
   type: 'normal',
+  text: 'BUTTON',
+  href: '#',
 };
 
 export default CustomLink;

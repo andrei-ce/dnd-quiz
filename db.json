@@ -6,10 +6,11 @@
   "external": [""],
   "theme": {
     "colors": {
-      "primary": "#0225b2",
-      "secondary": "#1896d1",
-      "mainBg": "rgba(23, 27, 53, 0.83)",
+      "primary": "#3a8569",
+      "secondary": "#ff7500",
+      "mainBg": "rgba(11, 38, 39, 0.89)",
       "contrastText": "#FFFFFF",
+      "disabled": "#585858",
       "wrong": "#B00020",
       "success": "#4caf50"
     },

@@ -15,13 +15,16 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    /* overflow-y: hidden; */
+    /* background-repeat: no-repeat;
+    background-attachment: fixed; */
     display: flex;
     flex-direction: column;
     color: ${() => theme.colors.contrastText};
   }
   html, body {
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Slab', sans-serif;
     font-weight: 300;
   }
   #__next {
@@ -43,8 +46,12 @@ const MetaTags = () => (
     <meta property='og:locale' content='pt_BR' />
     <link rel='preconnect' href='https://fonts.gstatic.com' />
     <link
-      href='https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap'
+      href='https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300&family=Trade+Winds&display=swap'
       rel='stylesheet'
+    />
+    <link
+      rel='stylesheet'
+      href='https://use.fontawesome.com/releases/v5.7.1/css/all.css'
     />
   </Head>
 );

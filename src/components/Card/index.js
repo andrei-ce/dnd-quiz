@@ -19,8 +19,8 @@ const Card = styled.div`
   h1,
   h2,
   h3 {
-    font-size: 18px;
-    font-weight: 300;
+    font-family: 'Trade Winds', cursive;
+    font-size: 22px;
     line-height: 1;
   }
   p {
@@ -33,7 +33,7 @@ Card.Header = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 18px 32px;
+  padding: 12px 22px;
   background-color: ${({ theme }) => theme.colors.primary};
   * {
     margin: 0;
