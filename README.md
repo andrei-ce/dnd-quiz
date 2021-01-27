@@ -9,6 +9,11 @@ quizzes.
 
 ## How to use
 
+deployed @
+[https://dnd-quiz.andrei-ce.vercel.app/](https://dnd-quiz.andrei-ce.vercel.app/)
+
+## How to use
+
 Download / Clone repository and type
 
 ```bash
@@ -24,10 +29,6 @@ npm run dev
 # or
 yarn dev
 ```
-
-### Try it on CodeSandbox
-
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
 
 ### Notes
 
