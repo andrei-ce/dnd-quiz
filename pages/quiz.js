@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
+import { useRouter } from 'next/router';
 
 import db from '../db.json';
 import Card from '../src/components/Card';
@@ -37,10 +38,15 @@ const LoadingQuestion = () => {
 
 const Results = ({ results, totalQuestions }) => {
   const totalRight = results.reduce((acc, cur) => acc + cur);
+  const router = useRouter();
+  const { name } = router.query;
 
   return (
     <Card>
-      <Card.Header>🎉 Parabéns 🎉</Card.Header>
+      <Card.Header>
+        {' '}
+        <h1>🎉 Parabéns {name} 🎉</h1>
+      </Card.Header>
       <Card.Content>
         {totalRight >= totalQuestions ? (
           <>
@@ -94,7 +100,7 @@ const QuestionCard = ({
       onSubmit();
       setIsQuestionSubmitted(false);
       setSelectedAlt(undefined);
-    }, 2000);
+    }, 500);
   };
 
   return (
