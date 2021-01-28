@@ -6,7 +6,7 @@
     {
       "image": "https://media.giphy.com/media/3o7bu6heWydRCv0DPq/giphy.gif",
       "title": "Como recuperar a vida de seu personagem?",
-      "description": "Essa é pra aquecer",
+      "description": "🚑 🩺",
       "answer": 3,
       "alternatives": [
         "Em um descanso longo (8h), jogando o dado correspondente",
@@ -18,13 +18,37 @@
     {
       "image": "https://media.giphy.com/media/l396VqYZOWsFSoSDS/giphy.gif",
       "title": "Qual a vantagem de surpreender um enemigo?",
-      "description": "Discreção pode ser útil!",
-      "answer": 1,
+      "description": "🤫",
+      "answer": 2,
       "alternatives": [
         "Ele leva um dano crítico",
-        "Você tem direito à um ataque antes de começar os turnos",
         "Você ganha inspiração",
+        "Você tem direito à um ataque antes de começar os turnos",
         "Tem a chance de matar em 1 golpe"
+      ]
+    },
+    {
+      "image": "https://media.giphy.com/media/njYrp176NQsHS/giphy.gif",
+      "title": "Como um mago solta suas magias?",
+      "description": "🔥 🧙🏻‍♂️",
+      "answer": 3,
+      "alternatives": [
+        "Joga um d20 + bonificador e comparar com a classe de armadura do alvo",
+        "O alvo joga um d20 para tentar superar o mínimo necessário para resistir à magia",
+        "As magias sempre acertam",
+        "Todas as anteriores. Depende de cada magia"
+      ]
+    },
+    {
+      "image": "https://media.giphy.com/media/Lj8SHbV4YE9tm/giphy.gif",
+      "title": "Quem pode usar armas nas 2 mãos?",
+      "description": "⚔️",
+      "answer": 0,
+      "alternatives": [
+        "Qualquer um, mas para soltar magia tem que ter uma mão livre!",
+        "Nao depende da classe, somente Elfos tem a agilidade suficiente",
+        "Somente um Hobbit",
+        "Hobbit e Guerreiros"
       ]
     }
   ],
