@@ -24,7 +24,7 @@ const Card = styled.div`
     line-height: 1;
   }
   p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1;
   }
 `;
@@ -51,6 +51,7 @@ Card.Content = styled.div`
   ul {
     list-style: none;
     padding: 0;
+    font-size: 14px;
   }
 `;
 

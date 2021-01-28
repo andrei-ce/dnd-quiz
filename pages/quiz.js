@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ContentLoader from 'react-content-loader';
+import { useRouter } from 'next/router';
 
 import db from '../db.json';
 import Card from '../src/components/Card';
@@ -8,7 +10,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizContainer from '../src/components/QuizContainer';
 import CustomBtn from '../src/components/CustomBtn';
-import ContentLoader from 'react-content-loader';
+import AlternativesForm from '../src/components/AlternativesForm';
 
 // <<<< Local Components (START) >>>>:
 const LoadingQuestion = () => {
@@ -34,28 +36,71 @@ const LoadingQuestion = () => {
   );
 };
 
-const Results = () => {
+const Results = ({ results, totalQuestions }) => {
+  const totalRight = results.reduce((acc, cur) => acc + cur);
+  const router = useRouter();
+  const { name } = router.query;
+
   return (
     <Card>
-      <Card.Header>🎉 Parabéns 🎉</Card.Header>
+      <Card.Header>
+        {' '}
+        <h1>🎉 Parabéns {name} 🎉</h1>
+      </Card.Header>
       <Card.Content>
-        <p>
-          Não sei quantas voce acertou, mas independente disso, para jogar D&D so
-          precisa de vontade, amigos e imaginção!{' '}
-        </p>
-        <p>Veja alguns videos, compre um starter pack, e chame a galera!</p>
+        {totalRight >= totalQuestions ? (
+          <>
+            <p>🎊 🎊 🎊 Você zerou o Quiz!🎊 🎊 🎊 </p>
+            <p>
+              Ja pensou em ser <strong>Dungeon Master</strong>?{' '}
+            </p>
+            <hr />
+          </>
+        ) : (
+          <>
+            <p>
+              Você acertou {totalRight} de {totalQuestions}! Mas independente disso,
+              para jogar D&D so precisa de vontade, amigos e imaginção!{' '}
+            </p>
+            <p>Veja alguns videos, compre um starter pack, e chame a galera!</p>
+            <hr />
+          </>
+        )}
+        <ul>
+          {results.map((value, i) => (
+            <li key={i}>
+              Pergunta #{i + 1}: {value === 1 ? `✅` : `❌`}
+            </li>
+          ))}
+        </ul>
       </Card.Content>
     </Card>
   );
 };
 
 // Local Component
-const QuestionCard = ({ question, totalQuestions, questionIndex, onSubmit }) => {
+const QuestionCard = ({
+  question,
+  totalQuestions,
+  questionIndex,
+  onSubmit,
+  addResult,
+}) => {
+  const [selectedAlt, setSelectedAlt] = useState(undefined);
+  const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
+  const isCorrect = selectedAlt === question.answer;
+  const hasSelectedAlt = selectedAlt !== undefined;
   const questionId = `question__${questionIndex}`;
 
   const handleSubmitQuiz = (e) => {
     e.preventDefault();
-    onSubmit();
+    setIsQuestionSubmitted(true);
+    setTimeout(() => {
+      addResult(isCorrect ? 1 : 0);
+      onSubmit();
+      setIsQuestionSubmitted(false);
+      setSelectedAlt(undefined);
+    }, 500);
   };
 
   return (
@@ -78,24 +123,32 @@ const QuestionCard = ({ question, totalQuestions, questionIndex, onSubmit }) => 
       <Card.Content>
         <h2>{question.title}</h2>
         <p>{question.description}</p>
-        <form autoComplete='off' onSubmit={(e) => handleSubmitQuiz(e)}>
+        <AlternativesForm autoComplete='off' onSubmit={(e) => handleSubmitQuiz(e)}>
           {/* <pre>{JSON.stringify(question.alternatives, null, 4)}</pre> */}
           {question.alternatives.map((alternative, i) => {
             const alternativeId = `alternative__${i}`;
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = selectedAlt === i;
             return (
-              <Card.Topic key={i} as='label' htmlFor={alternativeId}>
+              <Card.Topic
+                key={i}
+                as='label'
+                htmlFor={alternativeId}
+                data-selected={isSelected}
+                data-status={isQuestionSubmitted && alternativeStatus}>
                 <input
-                  // style={{ display: 'none' }}
+                  style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
                   type='radio'
+                  onChange={() => setSelectedAlt(i)}
                 />
                 {' ' + alternative}
               </Card.Topic>
             );
           })}
           <div style={{ display: 'flex' }}>
-            <CustomBtn type='submit' color='normal' disabled={false}>
+            <CustomBtn type='submit' color='normal' disabled={!hasSelectedAlt}>
               <div
                 style={{
                   display: 'flex',
@@ -111,7 +164,7 @@ const QuestionCard = ({ question, totalQuestions, questionIndex, onSubmit }) => 
               </div>
             </CustomBtn>
           </div>
-        </form>
+        </AlternativesForm>
       </Card.Content>
     </Card>
   );
@@ -129,13 +182,18 @@ const screenStates = {
 const Quiz = () => {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [results, setResults] = useState([]);
   const question = db.questions[questionIndex];
   const totalQuestions = db.questions.length;
+
+  const addResult = (result) => {
+    setResults([...results, result]);
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 2000);
+    }, 1800);
   }, []);
 
   const handleSubmit = (e) => {
@@ -158,9 +216,12 @@ const Quiz = () => {
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
             onSubmit={handleSubmit}
+            addResult={addResult}
           />
         )}
-        {screenState === screenStates.RESULT && <Results />}
+        {screenState === screenStates.RESULT && (
+          <Results totalQuestions={totalQuestions} results={results} />
+        )}
       </QuizContainer>
       <Footer />
       <GitHubCorner projectUrl='https://github.com/andrei-ce/' />
