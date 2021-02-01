@@ -1,11 +1,12 @@
-# Quizz app!
+# DnD (and other subjects) Quizz app!
 
-This was a fun exercise I did together with Alura 1 week online imersion into Next.js
-and React Styled components to create a SPA. In the future, all quizzes with the tags
+This was a fun exercise done in collaboration with Alura: 1 week online imersion into Next.js
+and React Styled components to create a SPA. Look for tags
 [alura](https://github.com/topics/alura),
 [imersao-react](https://github.com/topics/imersao-react) and
-[aluraquiz](https://github.com/topics/aluraquiz) will be merged into one large pool of
-quizzes.
+[aluraquiz](https://github.com/topics/aluraquiz) to look into other projects.
+
+All these quizzes are build from a near-defined database, so in this app you will see links to other quizes, that can load in this same domain, only consuming their APIs to gather questions, answers and theme colors. To hit my API, access https://dnd-quiz.andrei-ce.vercel.app/api/db with a simple GET request.
 
 ## Deployed @
 
@@ -14,12 +15,14 @@ Vercel:
 
 ## How to use
 
-Clone repository and type
+Clone repository and install dependencies
 
 ```bash
+git clone https://github.com/andrei-ce/dnd-quiz.git
 npm install
 # or
-yarn add
+git clone https://github.com/andrei-ce/dnd-quiz.git
+yarn
 ```
 
 After installing dependencies, run
