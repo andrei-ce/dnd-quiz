@@ -1,4 +1,4 @@
-# Quizz app!
+# DnD (and other subjects) Quizz app!
 
 This was a fun exercise done in collaboration with Alura: 1 week online imersion into Next.js
 and React Styled components to create a SPA. Look for tags
@@ -21,7 +21,7 @@ Clone repository and install dependencies
 git clone https://github.com/andrei-ce/dnd-quiz.git
 npm install
 # or
-https://github.com/andrei-ce/dnd-quiz.git
+git clone https://github.com/andrei-ce/dnd-quiz.git
 yarn
 ```
 
