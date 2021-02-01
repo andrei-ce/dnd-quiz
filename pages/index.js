@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import db from '../db.json';
 import Card from '../src/components/Card';
@@ -11,7 +12,6 @@ import QuizContainer from '../src/components/QuizContainer';
 import CustomBtn from '../src/components/CustomBtn';
 import Input from '../src/components/Input';
 import Link from '../src/components/Link';
-import { motion } from 'framer-motion';
 
 const Home = () => {
   const router = useRouter();

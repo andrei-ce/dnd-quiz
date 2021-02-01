@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
-// import db from '../../../db.json';
+import db from '../../../db.json';
 import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 import GitHubCorner from '../../components/GitHubCorner';
@@ -37,33 +38,50 @@ const LoadingCard = () => {
   );
 };
 
-const ResultsCard = ({ results, totalQuestions }) => {
+const ResultsCard = ({ results, totalQuestions, localQuiz }) => {
   const totalRight = results.reduce((acc, cur) => acc + cur);
+  const maxScore = totalQuestions === totalRight;
   const router = useRouter();
   const { name } = router.query;
 
   return (
-    <Card>
+    <Card
+      as={motion.section}
+      variants={{
+        show: { x: 0, opacity: 1 },
+        right: { x: 350, opacity: 0 },
+      }}
+      initial='right'
+      transition={{ delay: 0.3, duration: 0.1 }}
+      animate='show'>
       <Card.Header>
         {' '}
         <h1>🎉 Parabéns {name} 🎉</h1>
       </Card.Header>
       <Card.Content>
-        {totalRight >= totalQuestions ? (
+        {maxScore ? <p>🎊 🎊 🎊 Você zerou o Quiz!🎊 🎊 🎊 </p> : null}
+        {localQuiz && maxScore ? (
           <>
-            <p>🎊 🎊 🎊 Você zerou o Quiz!🎊 🎊 🎊 </p>
             <p>
               Ja pensou em ser <strong>Dungeon Master</strong>?{' '}
             </p>
             <hr />
           </>
-        ) : (
+        ) : localQuiz ? (
           <>
             <p>
               Você acertou {totalRight} de {totalQuestions}! Mas independente disso,
               para jogar D&D so precisa de vontade, amigos e imaginção!{' '}
             </p>
             <p>Veja alguns videos, compre um starter pack, e chame a galera!</p>
+            <hr />
+          </>
+        ) : (
+          <>
+            <p>
+              Você acertou {totalRight} de {totalQuestions}! Veja o detalhamento
+              abaixo:
+            </p>
             <hr />
           </>
         )}
@@ -142,7 +160,7 @@ const QuestionCard = ({
                   id={alternativeId}
                   name={questionId}
                   type='radio'
-                  onChange={() => setSelectedAlt(i)}
+                  onClick={() => setSelectedAlt(i)}
                 />
                 {' ' + alternative}
               </Card.Topic>
@@ -184,8 +202,17 @@ const Quiz = ({ externalDb }) => {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [results, setResults] = useState([]);
-  const question = externalDb.questions[questionIndex];
-  const totalQuestions = externalDb.questions.length;
+
+  // Depends on quiz content >>>
+  const question =
+    externalDb !== undefined
+      ? externalDb.questions[questionIndex]
+      : db.questions[questionIndex];
+  const totalQuestions =
+    externalDb !== undefined ? externalDb.questions.length : db.questions.length;
+  const bg = externalDb !== undefined ? externalDb.bg : db.bg;
+  const localQuiz = externalDb !== undefined ? false : true;
+  // <<< Depends on quiz content
 
   const addResult = (result) => {
     setResults([...results, result]);
@@ -207,9 +234,9 @@ const Quiz = ({ externalDb }) => {
   };
 
   return (
-    <QuizBackground backgroundImage={externalDb.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
-        <QuizLogo />
+        <QuizLogo localQuiz={localQuiz} />
         {screenState === screenStates.LOADING && <LoadingCard />}
         {screenState === screenStates.QUIZ && (
           <QuestionCard
@@ -221,7 +248,11 @@ const Quiz = ({ externalDb }) => {
           />
         )}
         {screenState === screenStates.RESULT && (
-          <ResultsCard totalQuestions={totalQuestions} results={results} />
+          <ResultsCard
+            totalQuestions={totalQuestions}
+            results={results}
+            localQuiz={localQuiz}
+          />
         )}
       </QuizContainer>
       <Footer />

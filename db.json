@@ -1,6 +1,6 @@
 {
   "bg": "https://wallpapercave.com/wp/HHOI06N.jpg",
-  "title": "D&D Quiz",
+  "title": "D&D | Quiz",
   "description": "Um quiz desenhado para saber se você está pronto para jogar sua primeira campanha.",
   "questions": [
     {
@@ -17,7 +17,7 @@
     },
     {
       "image": "https://media.giphy.com/media/l396VqYZOWsFSoSDS/giphy.gif",
-      "title": "Qual a vantagem de surpreender um enemigo?",
+      "title": "Qual a vantagem de surpreender um inimigo?",
       "description": "🤫",
       "answer": 2,
       "alternatives": [
@@ -50,6 +50,18 @@
         "Somente um Hobbit",
         "Hobbit e Guerreiros"
       ]
+    },
+    {
+      "image": "https://media.giphy.com/media/Vwthp819lV3q/giphy.gif",
+      "title": "Como seu personagem ganha inspiração?",
+      "description": "E para finalizar:",
+      "answer": 1,
+      "alternatives": [
+        "Quando passa mais de 10 min sem se locomover, meditando",
+        "Quando faz algo que prejudica o grupo, mas está enraizado em seus traços de personalidade",
+        "Quando consegue bloquear um ataque com seu escudo",
+        "Quando passa de nível"
+      ]
     }
   ],
   "external": [
@@ -68,5 +80,6 @@
       "success": "#4caf50"
     },
     "borderRadius": "4px"
-  }
+  },
+  "favicon": "https://vectorified.com/images/20-sided-dice-icon-10.png"
 }

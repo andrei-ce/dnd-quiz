@@ -58,9 +58,9 @@ Card.Content = styled.div`
 Card.Topic = styled.a`
   outline: 0;
   text-decoration: none;
-  overflow: hidden;
+  /* overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   color: ${({ theme }) => theme.colors.contrastText};
   background-color: ${({ theme }) => `${theme.colors.primary}40`};
   padding: 10px 15px;
