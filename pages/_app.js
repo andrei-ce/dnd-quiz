@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    /* overflow-y: hidden; */
+    overflow-x: hidden;
     /* background-repeat: no-repeat;
     background-attachment: fixed; */
     display: flex;

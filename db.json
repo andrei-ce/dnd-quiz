@@ -52,7 +52,11 @@
       ]
     }
   ],
-  "external": [""],
+  "external": [
+    "https://aluraquiz-css.omariosouto.vercel.app/",
+    "https://ghibliquiz.ygoryamanaca.vercel.app/",
+    "https://quiz-interstellar.dotjorge.vercel.app/"
+  ],
   "theme": {
     "colors": {
       "primary": "#3a8569",

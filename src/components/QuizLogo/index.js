@@ -7,7 +7,7 @@ const Logo = ({ className }) => (
   <div style={{ display: 'flex', justifyContent: 'center', height: '130px' }}>
     <img
       src='https://rpgknights.com/wp-content/uploads/2014/07/dungeons-and-dragons-5e-logo.png'
-      alt='D&D Logo'
+      alt='Quiz Logo'
       height='200'
       width='300'
     />

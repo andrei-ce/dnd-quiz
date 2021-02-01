@@ -10,6 +10,8 @@ import QuizLogo from '../src/components/QuizLogo';
 import QuizContainer from '../src/components/QuizContainer';
 import CustomBtn from '../src/components/CustomBtn';
 import Input from '../src/components/Input';
+import Link from '../src/components/Link';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const router = useRouter();
@@ -28,7 +30,15 @@ const Home = () => {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Card>
+        <Card
+          as={motion.section}
+          variants={{
+            show: { x: 0, opacity: 1 },
+            right: { x: 350, opacity: 0 },
+          }}
+          initial='right'
+          transition={{ duration: 0.1 }}
+          animate='show'>
           <Card.Header>
             <h1>Dungeons & Dragons</h1>
           </Card.Header>
@@ -61,14 +71,47 @@ const Home = () => {
             </form>
           </Card.Content>
         </Card>
-        <Card>
+        <Card
+          as={motion.section}
+          variants={{
+            show: { x: 0, opacity: 1 },
+            right: { x: 350, opacity: 0 },
+          }}
+          initial='right'
+          transition={{ delay: 0.3, duration: 0.1 }}
+          animate='show'>
           <Card.Content>
             <h3>Quizzes da galera</h3>
-            <p>🚧 Em construção 🚧</p>
+            <ul>
+              {db.external.map((extLink, i) => {
+                const [projectName, githubUser] = extLink
+                  .replace(/\//g, '')
+                  .replace('https:', '')
+                  .replace('.vercel.app', '')
+                  .split('.');
+
+                return (
+                  <li key={i}>
+                    <Card.Topic as={Link} href={`quiz/${projectName}___${githubUser}`}>
+                      {`${githubUser}/${projectName}`}
+                    </Card.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Card.Content>
         </Card>
       </QuizContainer>
-      <Footer />
+      <Footer
+        as={motion.footer}
+        variants={{
+          show: { x: 0, opacity: 1 },
+          right: { x: 350, opacity: 0 },
+        }}
+        initial='right'
+        transition={{ delay: 0.5, duration: 1 }}
+        animate='show'
+      />
       <GitHubCorner projectUrl='https://github.com/andrei-ce/' />
     </QuizBackground>
   );

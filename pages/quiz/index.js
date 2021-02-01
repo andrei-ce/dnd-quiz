@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
-import db from '../db.json';
-import Card from '../src/components/Card';
-import Footer from '../src/components/Footer';
-import GitHubCorner from '../src/components/GitHubCorner';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizContainer from '../src/components/QuizContainer';
-import CustomBtn from '../src/components/CustomBtn';
-import AlternativesForm from '../src/components/AlternativesForm';
+import db from '../../db.json';
+import Card from '../../src/components/Card';
+import Footer from '../../src/components/Footer';
+import GitHubCorner from '../../src/components/GitHubCorner';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizLogo from '../../src/components/QuizLogo';
+import QuizContainer from '../../src/components/QuizContainer';
+import CustomBtn from '../../src/components/CustomBtn';
+import AlternativesForm from '../../src/components/AlternativesForm';
+import BackLinkArrow from '../../src/components/BackLinkArrow';
 
 // <<<< Local Components (START) >>>>:
-const LoadingQuestion = () => {
+const LoadingCard = () => {
   return (
-    <Card>
+    <Card
+      as={motion.section}
+      variants={{
+        show: { x: 0, opacity: 1 },
+        right: { x: 350, opacity: 0 },
+      }}
+      initial='right'
+      transition={{ delay: 0.3, duration: 0.1 }}
+      animate='show'>
       <Card.Header>Carregando...</Card.Header>
       <ContentLoader
         speed={2}
@@ -36,13 +46,21 @@ const LoadingQuestion = () => {
   );
 };
 
-const Results = ({ results, totalQuestions }) => {
+const ResultsCard = ({ results, totalQuestions }) => {
   const totalRight = results.reduce((acc, cur) => acc + cur);
   const router = useRouter();
   const { name } = router.query;
 
   return (
-    <Card>
+    <Card
+      as={motion.section}
+      variants={{
+        show: { x: 0, opacity: 1 },
+        right: { x: 350, opacity: 0 },
+      }}
+      initial='right'
+      transition={{ delay: 0.3, duration: 0.1 }}
+      animate='show'>
       <Card.Header>
         {' '}
         <h1>🎉 Parabéns {name} 🎉</h1>
@@ -104,9 +122,17 @@ const QuestionCard = ({
   };
 
   return (
-    <Card>
+    <Card
+      as={motion.section}
+      variants={{
+        show: { x: 0, opacity: 1 },
+        right: { x: 350, opacity: 0 },
+      }}
+      initial='right'
+      transition={{ delay: 0.3, duration: 0.1 }}
+      animate='show'>
       <Card.Header>
-        {/* <BackLinkArrow href="/"/> */}
+        <BackLinkArrow href='/' />
         <h3>
           Pergunta {questionIndex + 1} de {totalQuestions}
         </h3>
@@ -209,7 +235,7 @@ const Quiz = () => {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        {screenState === screenStates.LOADING && <LoadingQuestion />}
+        {screenState === screenStates.LOADING && <LoadingCard />}
         {screenState === screenStates.QUIZ && (
           <QuestionCard
             question={question}
@@ -220,7 +246,7 @@ const Quiz = () => {
           />
         )}
         {screenState === screenStates.RESULT && (
-          <Results totalQuestions={totalQuestions} results={results} />
+          <ResultsCard totalQuestions={totalQuestions} results={results} />
         )}
       </QuizContainer>
       <Footer />
