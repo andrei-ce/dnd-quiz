@@ -81,7 +81,7 @@ const Logo = ({ className }) => {
         </svg>
       ) : (
         <img
-          src='https://rpgknights.com/wp-content/uploads/2014/07/dungeons-and-dragons-5e-logo.png'
+          src='/images/ddlogo.png'
           alt='Quiz Logo'
           height='200'
           width='300'

@@ -40,11 +40,11 @@ const MetaTags = () => (
   <Head>
     <title>D&D | Quiz</title>
     <meta property='og:title' content={db.title} key='title' />
+    <meta property='og:image:type' content='image/jpg' />
     <meta property='og:image' content={db.bg} />
     <meta property='og:description' content={db.description} />
     <meta property='og:type' content='website' />
     <meta property='og:locale' content='pt_BR' />
-    <meta property='og:image:type' content='image/jpg' />
     <link rel='shortcut icon' href={db.favicon} />
     <link rel='preconnect' href='https://fonts.gstatic.com' />
     <link
